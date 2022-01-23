@@ -14,7 +14,7 @@ class Theater(models.Model):
 
 class Movie(models.Model):
     name = models.CharField(max_length=128)
-    slug = models.SlugField(max_length=128, editable=False, unique=True)
+    slug = models.SlugField(max_length=134, editable=False, unique=True)
     release_year = models.IntegerField()
     duration_seconds = models.IntegerField("duration in seconds")
 
