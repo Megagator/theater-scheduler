@@ -41,4 +41,4 @@ class MovieViewingEvent(models.Model):
     begins_at = models.DateTimeField()
 
     def __str__(self):
-        return '{} in theater {} at {}'.format(self.movie, self.theater, self.begins_at)
+        return '{} in theater {} at {}'.format(self.movie, self.theater.short_name, self.begins_at.strftime("%H:%M on %m/%d"))
