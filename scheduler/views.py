@@ -1,11 +1,16 @@
 from django.shortcuts import get_object_or_404, get_list_or_404, render
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from .models import Theater, Movie
 
 
 def index(request):
     return render(request, "scheduler/index.html")
+
+def create_event(request):
+    print(request.POST)
+    return HttpResponseRedirect(reverse('scheduler:index'))
 
 def theaters(request):
     theaters = get_list_or_404(Theater.objects.order_by('short_name'))
