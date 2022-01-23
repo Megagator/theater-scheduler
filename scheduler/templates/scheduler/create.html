@@ -8,17 +8,56 @@
             <div class="modal-body">
                 <form id="eventCreate" action="{% url 'scheduler:create_event' %}" method="post">
                     {% csrf_token %}
-                    <div class="mb-3">
-                        <select name="movie_name" class="form-select" aria-label="Select a movie">
-                            <option selected>Random</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                    <div class="form-floating mb-3">
+                        <select name="movie_id" id="movie_id" class="form-select" aria-label="Select a movie">
+                            <option value="{{ random_movie }}" selected>Random</option>
+                            {% for movie in movies %}
+                            <option value="{{ movie.id }}">{{ movie }}</option>
+                            {% endfor %}
                         </select>
+                        <label for="movie_id">Movie</label>
                     </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" name="random_time" class="form-check-input" id="randomTime">
-                        <label class="form-check-label" for="randomTime">Random Time</label>
+                    <div class="form-floating mb-3">
+                        <select name="theater_id" id="theater_id" class="form-select" aria-label="Select a theater">
+                            <option value="{{ random_theater }}" selected>Random</option>
+                            {% for theater in theaters %}
+                            <option value="{{ theater.id }}">{{ theater }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="theater_name">Theater</label>
+                    </div>
+                    <hr>
+                    <div class="form-floating mb-3">
+                        <select name="event_day" id="event_day" class="form-select" aria-label="Select a day">
+                            {% for date, day_string in days.items %}
+                            <option value="{{ date }}">{{ day_string }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="event_day">Day</label>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <select name="event_hour" id="event_hour" class="form-select" aria-label="Select an hour">
+                                    <option value="{{ random_hour }}" selected>Random</option>
+                                    {% for hour in hours %}
+                                    <option value="{{ hour }}">{{ hour }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label for="event_hour">Hour</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <select name="event_minute" id="event_minute" class="form-select" aria-label="Select a minute">
+                                    <option value="{{ random_minute }}" selected>Random</option>
+                                    {% for minute in minutes %}
+                                    <option value="{{ minute }}">{{ minute }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label for="event_minute">Minute</label>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

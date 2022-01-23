@@ -11,7 +11,22 @@
 </div>
 
 <table>
-
+    <thead>
+        <tr>
+            <td>Time</td>
+            <td>Movie</td>
+            <td>Theater</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.begins_at }}</td>
+            <td>{{ event.movie }}</td>
+            <td>{{ event.theater }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 
 {% include "scheduler/create.html" %}
