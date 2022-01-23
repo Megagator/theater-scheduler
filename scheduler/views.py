@@ -30,3 +30,4 @@ def movie_schedule(request, movie_name):
     movie = get_object_or_404(Movie, slug=movie_name)
     ctx = { 'movie': movie }
     return render(request, "scheduler/movie.html", ctx)
+

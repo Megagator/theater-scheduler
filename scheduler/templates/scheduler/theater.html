@@ -4,8 +4,11 @@
 
 {% block content %}
 
-<h1>Theater {{ theater.short_name }} – {{ theater.name }}</h1>
-<hr>
-<h2>Upcoming Showings:</h2>
+<nav class="py-4">
+    <a href="/theaters">&#x2039; All Theaters</a>
+</nav>
+
+<h1>Theater {{ theater }}</h1>
+<h2 class="text-secondary">Upcoming Showings:</h2>
 
 {% endblock content %}
