@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "Tron",
+        "slug": "tron-1982",
+        "release_year": 1982,
+        "duration_seconds": 7560
+    },
+    {
+        "id": 2,
+        "name": "Pretty Woman",
+        "slug": "pretty-woman-1990",
+        "release_year": 1990,
+        "duration_seconds": 7140
+    },
+    {
+        "id": 3,
+        "name": "Indiana Jones and the Raiders of the Lost Ark",
+        "slug": "indiana-jones-and-the-raiders-of-the-lost-ark-1981",
+        "release_year": 1981,
+        "duration_seconds": 6900
+    },
+    {
+        "id": 4,
+        "name": "The Life Aquatic with Steve Zissou",
+        "slug": "the-life-aquatic-with-steve-zissou-2004",
+        "release_year": 2004,
+        "duration_seconds": 7080
+    },
+    {
+        "id": 5,
+        "name": "Good Will Hunting",
+        "slug": "good-will-hunting-1997",
+        "release_year": 1997,
+        "duration_seconds": 7560
+    },
+    {
+        "id": 6,
+        "name": "The Mummy",
+        "slug": "the-mummy-1999",
+        "release_year": 1999,
+        "duration_seconds": 7440
+    },
+    {
+        "id": 7,
+        "name": "Monsters, Inc",
+        "slug": "monsters-inc-2001",
+        "release_year": 2001,
+        "duration_seconds": 5520
+    },
+    {
+        "id": 8,
+        "name": "Toy Story",
+        "slug": "toy-story-1995",
+        "release_year": 1995,
+        "duration_seconds": 4800
+    },
+    {
+        "id": 9,
+        "name": "The Silence of the Lambs",
+        "slug": "the-silence-of-the-lambs-1991",
+        "release_year": 1991,
+        "duration_seconds": 7080
+    },
+    {
+        "id": 10,
+        "name": "Jurassic Park",
+        "slug": "jurassic-park-1993",
+        "release_year": 1993,
+        "duration_seconds": 7560
+    }
+]

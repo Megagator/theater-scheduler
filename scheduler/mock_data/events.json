@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "begins_at": "2022-01-22 10:00:00",
+    "movie_id": 1,
+    "theater_id": 1
+  },
+  {
+    "id": 2,
+    "begins_at": "2022-01-22 10:00:00",
+    "movie_id": 2,
+    "theater_id": 2
+  },
+  {
+    "id": 3,
+    "begins_at": "2022-01-22 12:00:00",
+    "movie_id": 3,
+    "theater_id": 3
+  },
+  {
+    "id": 4,
+    "begins_at": "2022-01-22 14:00:00",
+    "movie_id": 4,
+    "theater_id": 4
+  },
+  {
+    "id": 5,
+    "begins_at": "2022-01-22 10:00:00",
+    "movie_id": 5,
+    "theater_id": 5
+  },
+  {
+    "id": 6,
+    "begins_at": "2022-01-22 12:00:00",
+    "movie_id": 6,
+    "theater_id": 6
+  },
+  {
+    "id": 7,
+    "begins_at": "2022-01-22 10:00:00",
+    "movie_id": 7,
+    "theater_id": 7
+  },
+  {
+    "id": 8,
+    "begins_at": "2022-01-22 12:00:00",
+    "movie_id": 8,
+    "theater_id": 2
+  },
+  {
+    "id": 9,
+    "begins_at": "2022-01-22 12:00:00",
+    "movie_id": 9,
+    "theater_id": 4
+  },
+  {
+    "id": 10,
+    "begins_at": "2022-01-22 12:30:00",
+    "movie_id": 10,
+    "theater_id": 5
+  }
+]

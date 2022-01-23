@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}All Theaters{% endblock %}
+
+{% block content %}
+
+<h1>All Theaters</h1>
+<hr>
+<ul>
+    {% for theater in theaters %}
+        <li>
+            <a href="/theaters/{{ theater.short_name }}">{{ theater }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
