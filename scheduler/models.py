@@ -10,7 +10,7 @@ class Theater(models.Model):
     created_at = models.DateTimeField(default=now, editable=False)
 
     def __str__(self):
-        return '{} ({})'.format(self.short_name, self.name)
+        return '{} – {}'.format(self.short_name, self.name)
 
 class Movie(models.Model):
     name = models.CharField(max_length=128)
