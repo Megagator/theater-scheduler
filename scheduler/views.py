@@ -6,20 +6,26 @@ import random, datetime
 
 from .models import MovieViewingEvent, Theater, Movie
 
-
-def index(request):
+def schedule(request, date=None):
     days = {}
     day = datetime.date.today()
-    days[day.__str__()] = 'Today'
+    days[str(day)] = 'Today'
     for _ in range(5):
         day += datetime.timedelta(days=1)
-        days[day.__str__()] = day.strftime('%A, %b %-d')
+        days[str(day)] = day.strftime('%A, %b %-d')
 
-    minutes = []
-    for m in range(0, 60, 15):
-        minutes.append('{:02d}'.format(m))
+    minutes = [0, 15, 30, 45]
 
-    events = MovieViewingEvent.objects.order_by('begins_at')
+    if type(date) == str:
+        date_format = '%Y-%m-%d'
+        date = datetime.datetime.strptime(date, date_format).date()
+    else:
+        date = datetime.date.today()
+
+    events = MovieViewingEvent.objects.order_by('begins_at').filter(begins_at__year=date.year,
+        begins_at__month=date.month,
+        begins_at__day=date.day
+    )
     # group by theater, sorted by short name
     events_by_theater = {}
     for event in events:
@@ -31,6 +37,9 @@ def index(request):
     movies = Movie.objects.order_by('slug')
     theaters = Theater.objects.order_by('short_name')
     ctx = {
+        'date_string': date.strftime('%A, %b. %-d'),
+        'date_prev': str(date - datetime.timedelta(days=1)),
+        'date_next': str(date + datetime.timedelta(days=1)),
         'events': events_by_theater,
         'movies': movies,
         'theaters': theaters,
@@ -44,7 +53,7 @@ def index(request):
         'random_minute': random.choice(minutes)
     }
 
-    return render(request, "scheduler/index.html", ctx)
+    return render(request, "scheduler/schedule.html", ctx)
 
 def create_event(request):
     try:
@@ -61,7 +70,7 @@ def create_event(request):
     except Exception as e:
         print(e)
 
-    return HttpResponseRedirect(reverse('scheduler:index'))
+    return HttpResponseRedirect(reverse('scheduler:future_schedule', args=(str(begins_at.date()),)))
 
 def theaters(request):
     theaters = get_list_or_404(Theater.objects.order_by('short_name'))

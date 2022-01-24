@@ -41,7 +41,15 @@
                                 <select name="event_hour" id="event_hour" class="form-select" aria-label="Select an hour">
                                     <option value="{{ random_hour }}" selected>Random</option>
                                     {% for hour in hours %}
-                                    <option value="{{ hour }}">{{ hour }}</option>
+                                    <option value="{{ hour }}">
+                                        {% if hour == 0 %}
+                                            midnight
+                                        {% elif hour == 12 %}
+                                            noon
+                                        {% else %}
+                                            {{ hour }}
+                                        {% endif %}
+                                    </option>
                                     {% endfor %}
                                 </select>
                                 <label for="event_hour">Hour</label>
