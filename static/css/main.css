@@ -21,6 +21,8 @@ h3 {
     padding: 0.5rem;
     font-size: 0.75rem;
     color: rgb(63, 63, 63);
+    text-align: right;
+    z-index: 1;
     position: sticky;
     left: 0;
     background: rgba(255, 255, 255, 0.75);
@@ -28,8 +30,33 @@ h3 {
     backdrop-filter: blur(3px);
 }
 
+.time-column span {
+    padding-left: 5px;
+    position: relative;
+}
+
+.time-column span::before {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color: rgb(215, 225, 235);
+    display: block;
+    position: absolute;
+    top: 0.5rem;
+    z-index: -1;
+    left: -100%;
+}
+
+.time-column hr {
+    background-color: rgb(215, 225, 235);
+    opacity: 1;
+}
+
 .event-column {
+    /* same as .event's width + padding so they fill the same space when using absolute positioning */
+    flex: 0 0 12rem;
     padding: 0.5rem;
+    position: relative;
 }
 
 .event-column + .event-column {
@@ -43,9 +70,11 @@ h3 {
 
 .event {
     width: 11rem;
-    background: lightblue;
-    padding: 0.4rem 0.5rem;
+    background-color: hsl(195, 53%, 79%);
+    color: hsl(195, 53%, 19%);
+    padding: 0.4rem 0.5rem 2rem;
     border-radius: 11px;
+    position: absolute;
 }
 
 .event h5 {
@@ -55,6 +84,9 @@ h3 {
     font-size: 0.875rem;
     text-align: right;
     margin: 0;
+    bottom: 0.4rem;
+    right: 0.5rem;
+    position: absolute;
 }
 
 .event.color-1 {

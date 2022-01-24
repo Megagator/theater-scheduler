@@ -8,7 +8,7 @@
     <div class="col">
         <h1>Schedule</h1>
     </div>
-    <div class="col ms-auto">
+    <div class="col-auto">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">Create +</button>
     </div>
 </div>
@@ -18,22 +18,27 @@
         <h2>&nbsp;</h2>
         {% for hour in hours %}
             {% if hour == 0 %}
-            <span>midnight</span>
+            <span id="hour-{{ hour }}">midnight</span>
             {% elif hour == 12 %}
-            <span>noon</span>
+            <span id="hour-{{ hour }}">noon</span>
             {% else %}
-            <span>{{ hour }}:00</span>
+            <span id="hour-{{ hour }}">{{ hour }}:00</span>
             {% endif %}
-            <hr>
-            <hr>
-            <hr>
+            <hr id="hour-{{ hour }}-15">
+            <hr id="hour-{{ hour }}-30">
+            <hr id="hour-{{ hour }}-45">
         {% endfor %}
     </div>
     {% for theater_short_name, theater_events in events.items %}
     <div class="event-column">
         <h2><a href="/theaters/{{ theater_short_name }}">{{ theater_short_name }}</a></h2>
         {% for event in theater_events %}
-        <div class="event color-{{ event.movie.color_code }}">
+        <div 
+            class="event color-{{ event.movie.color_code }}"
+            data-hour="{{ event.begins_at.hour }}"
+            data-minute="{{ event.begins_at.minute }}"
+            data-duration_seconds="{{ event.movie.duration_seconds }}"
+        >
             <h5><a href="/movies/{{ event.movie.slug }}">{{ event.movie }}</a></h3>
             <p>{{ event.movie.friendly_duration }}</p>
         </div>
@@ -41,6 +46,30 @@
     </div>
     {% endfor %}
 </div>
+
+<script>
+    const schedulesTop = document.querySelector('.day-schedule').getBoundingClientRect().top
+
+    const sampleHourOneTop = document.getElementById('hour-1').getBoundingClientRect().top
+    const sampleHourTwoop = document.getElementById('hour-2').getBoundingClientRect().top
+    // difference in the two mark's
+    const pixelsPerSecond = (sampleHourTwoop - sampleHourOneTop) / 3600 
+
+    const events = document.querySelectorAll('.event')
+    for (let i = 0; i < events.length; i++) {
+        let timeTick = `hour-${events[i].dataset.hour}`
+        if (events[i].dataset.minute != 0) {
+            timeTick += `-${events[i].dataset.minute}`
+        }
+
+        const timeTickBounds = document.getElementById(timeTick).getBoundingClientRect()
+        const eventTop = timeTickBounds.top - schedulesTop + (timeTickBounds.height / 2)
+        events[i].style.top = `${eventTop}px`
+
+        const height = events[i].dataset.duration_seconds * pixelsPerSecond
+        events[i].style.height = `${height}px`
+    }
+</script>
 
 {% include "scheduler/create.html" %}
 
