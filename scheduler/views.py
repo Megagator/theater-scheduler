@@ -20,10 +20,18 @@ def index(request):
         minutes.append('{:02d}'.format(m))
 
     events = MovieViewingEvent.objects.order_by('begins_at')
+    # group by theater, sorted by short name
+    events_by_theater = {}
+    for event in events:
+        if (event.theater.short_name not in events_by_theater):
+            events_by_theater[event.theater.short_name] = []
+        events_by_theater[event.theater.short_name].append(event)
+    events_by_theater = dict(sorted(events_by_theater.items()))
+
     movies = Movie.objects.order_by('slug')
     theaters = Theater.objects.order_by('short_name')
     ctx = {
-        'events': events,
+        'events': events_by_theater,
         'movies': movies,
         'theaters': theaters,
         'random_movie': random.choice(movies).id,

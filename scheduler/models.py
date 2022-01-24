@@ -25,12 +25,15 @@ class Movie(models.Model):
 
     def friendly_duration(self):
         hours = floor(self.duration_seconds / 3600)
-        minutes = round(self.duration_seconds - (hours * 3600) / 60)
+        minutes = round((self.duration_seconds - (hours * 3600)) / 60)
 
         if hours > 0:
             return "{}h {}m".format(hours, minutes)
         else:
             return "{}m".format(minutes)
+
+    def color_code(self):
+        return (self.id % 10) + 1
 
     def __str__(self):
         return '{} ({})'.format(self.name, self.release_year)

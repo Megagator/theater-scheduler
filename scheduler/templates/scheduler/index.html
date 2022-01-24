@@ -4,30 +4,43 @@
 
 {% block content %}
 
-<h1>Schedule</h1>
-
-<div class="text-end">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">Create +</button>
+<div class="row justify-content-between align-items-center">
+    <div class="col">
+        <h1>Schedule</h1>
+    </div>
+    <div class="col ms-auto">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">Create +</button>
+    </div>
 </div>
 
-<table>
-    <thead>
-        <tr>
-            <td>Time</td>
-            <td>Movie</td>
-            <td>Theater</td>
-        </tr>
-    </thead>
-    <tbody>
-        {% for event in events %}
-        <tr>
-            <td>{{ event.begins_at }}</td>
-            <td>{{ event.movie }}</td>
-            <td>{{ event.theater }}</td>
-        </tr>
+<div class="day-schedule">
+    <div class="time-column">
+        <h2>&nbsp;</h2>
+        {% for hour in hours %}
+            {% if hour == 0 %}
+            <span>midnight</span>
+            {% elif hour == 12 %}
+            <span>noon</span>
+            {% else %}
+            <span>{{ hour }}:00</span>
+            {% endif %}
+            <hr>
+            <hr>
+            <hr>
         {% endfor %}
-    </tbody>
-</table>
+    </div>
+    {% for theater_short_name, theater_events in events.items %}
+    <div class="event-column">
+        <h2><a href="/theaters/{{ theater_short_name }}">{{ theater_short_name }}</a></h2>
+        {% for event in theater_events %}
+        <div class="event color-{{ event.movie.color_code }}">
+            <h5><a href="/movies/{{ event.movie.slug }}">{{ event.movie }}</a></h3>
+            <p>{{ event.movie.friendly_duration }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
 
 {% include "scheduler/create.html" %}
 
