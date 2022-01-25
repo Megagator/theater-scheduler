@@ -1,6 +1,6 @@
 # Theater Scheduler
 
-A Django app to schedule movies during in many theaters across many days
+A Django app to schedule movies in many theaters across many days.
 
 
 ## Environment
