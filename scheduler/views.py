@@ -65,6 +65,9 @@ def create_event(request):
     except Exception as e:
         print(e)
 
+    if request.POST['event_day'] == str(datetime.date.today()):
+        return HttpResponseRedirect(reverse('scheduler:schedule'))
+
     return HttpResponseRedirect(reverse('scheduler:future_schedule', args=(str(begins_at.date()),)))
 
 def theaters(request):
