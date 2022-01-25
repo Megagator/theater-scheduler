@@ -45,16 +45,16 @@ def schedule(request, date=None):
     return render(request, "scheduler/schedule.html", ctx)
 
 def create_event(request):
+    begins_at = datetime.datetime.now()
     try:
-        time = ('{} {}:{}'.format(request.POST['event_day'], request.POST['event_hour'], request.POST['event_minute']))
-        date_format = '%Y-%m-%d %H:%M'
+        time = ('{} {}:{} +0000'.format(request.POST['event_day'], request.POST['event_hour'], request.POST['event_minute']))
+        date_format = '%Y-%m-%d %H:%M %z'
         begins_at = datetime.datetime.strptime(time, date_format)
 
         movie_id = request.POST['movie_id']
         theater_id = request.POST['theater_id']
         if theater_id == 'balanced':
             theater_id = get_least_busy_available_theater(begins_at, movie_id)
-            # TODO: handle the None result (no available theater)
 
         new_event = MovieViewingEvent(
             movie_id = movie_id,
