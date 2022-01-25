@@ -1,0 +1,16 @@
+- ellide hours in the calendar that don't have any events in them
+- improve the design of the all movies/theaters views
+- the sizing and alignment of the arrows and today buttons are funky
+- redirect current day to the / route
+- actually list the upcoming events under a movie or theater
+- **add tests**
+- handle different timezones? Right now it's assumed everyone using the app shares the same timezone
+- related, "today" reflects UTC
+- support events rolling over to the next day
+- support events rolling over from the previous day
+- explore type annotation support in Django
+- the theater short names in the schedule header sometimes have weird clipping on the leading edge
+- schedule tab in the nav is not active for future/past schedules
+- condensed schedule view for less vertical scrolling?
+- add a best fit option to the create modal that packs the new event in as soon as possible
+- add result success/error messages after creating an event
