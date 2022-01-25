@@ -10,9 +10,9 @@
   <body>
     <header class="container mt-5">
       <nav class="nav nav-tabs">
-        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Schedule</a>
-        <a class="nav-link {% if 'movies' in request.path %}active{% endif %}" href="/movies">Movies</a>
-        <a class="nav-link {% if 'theaters' in request.path %}active{% endif %}" href="/theaters">Theaters</a>
+        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'scheduler:schedule' %}">Schedule</a>
+        <a class="nav-link {% if 'movies' in request.path %}active{% endif %}" href="{% url 'scheduler:movies' %}">Movies</a>
+        <a class="nav-link {% if 'theaters' in request.path %}active{% endif %}" href="{% url 'scheduler:theaters' %}">Theaters</a>
       </nav>
     </header>
     <main class="container">

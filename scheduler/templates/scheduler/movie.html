@@ -5,7 +5,7 @@
 {% block content %}
 
 <nav class="py-4">
-    <a href="/movies">&#x2039; All Movies</a>
+    <a href="{% url 'scheduler:movies' %}">&#x2039; All Movies</a>
 </nav>
 
 <h1>{{ movie }}</h1>
