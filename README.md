@@ -4,9 +4,12 @@ A Django app to schedule movies during in many theaters across many days
 
 
 ## Environment
-If you don't already have a Python3 or a virtualenv with Django 4.x installed, follow these instructions to get up and running in a virtual shell environment: [https://docs.djangoproject.com/en/4.0/intro/contributing/](https://docs.djangoproject.com/en/4.0/intro/contributing/)
+If you don't already have a Python3 or a virtualenv with Django 4.x installed, follow these instructions to get up and running in a virtual shell environment: [https://docs.djangoproject.com/en/4.0/topics/install/](https://docs.djangoproject.com/en/4.0/topics/install/)
 
-TL;DR, use `python3 -m venv ~/.virtualenvs/theater_scheduler` and then `source ~/.virtualenvs/theater_scheduler/bin/activate`
+TL;DR, use
+- `python3 -m venv ~/.virtualenvs/theater_scheduler` to create your venv
+- `source ~/.virtualenvs/theater_scheduler/bin/activate` to activate the environment
+- `python -m pip install Django` to install Django
 
 _note: you can run `deactivate` to exit this virtual environment, or just close your shell instance_
 
