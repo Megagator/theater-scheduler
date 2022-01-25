@@ -97,4 +97,4 @@ def get_least_busy_available_theater(new_event_begins_at, movie_id):
             break
 
     # we have exhasuted the theaters, so there is no availability
-    return None
+    raise Exception("no available theaters for {} through {}".format(new_event_begins_at, new_event_ends_at))
