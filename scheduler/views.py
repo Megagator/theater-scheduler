@@ -4,7 +4,7 @@ from django.urls import reverse
 
 import random, datetime
 
-from .models import MovieViewingEvent, Theater, Movie
+from .models import MovieViewingEvent, Theater, Movie, get_least_busy_available_theater, get_movie_viewing_events_on
 
 def schedule(request, date=None):
     days = {}
@@ -22,25 +22,14 @@ def schedule(request, date=None):
     else:
         date = datetime.date.today()
 
-    events = MovieViewingEvent.objects.order_by('begins_at').filter(begins_at__year=date.year,
-        begins_at__month=date.month,
-        begins_at__day=date.day
-    )
-    # group by theater, sorted by short name
-    events_by_theater = {}
-    for event in events:
-        if (event.theater.short_name not in events_by_theater):
-            events_by_theater[event.theater.short_name] = []
-        events_by_theater[event.theater.short_name].append(event)
-    events_by_theater = dict(sorted(events_by_theater.items()))
-
     movies = Movie.objects.order_by('slug')
     theaters = Theater.objects.order_by('short_name')
+    events = get_movie_viewing_events_on(date, theaters)
     ctx = {
         'date_string': date.strftime('%A, %b. %-d'),
         'date_prev': str(date - datetime.timedelta(days=1)),
         'date_next': str(date + datetime.timedelta(days=1)),
-        'events': events_by_theater,
+        'events': events,
         'movies': movies,
         'theaters': theaters,
         'random_movie': random.choice(movies).id,
@@ -61,9 +50,15 @@ def create_event(request):
         date_format = '%Y-%m-%d %H:%M'
         begins_at = datetime.datetime.strptime(time, date_format)
 
+        movie_id = request.POST['movie_id']
+        theater_id = request.POST['theater_id']
+        if theater_id == 'balanced':
+            theater_id = get_least_busy_available_theater(begins_at, movie_id)
+            # TODO: handle the None result (no available theater)
+
         new_event = MovieViewingEvent(
-            movie_id = request.POST['movie_id'],
-            theater_id = request.POST['theater_id'],
+            movie_id = movie_id,
+            theater_id = theater_id,
             begins_at = begins_at
         )
         new_event.save()

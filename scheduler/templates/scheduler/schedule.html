@@ -34,14 +34,16 @@
             {% else %}
             <span id="hour-{{ hour }}">{{ hour }}:00</span>
             {% endif %}
-            <hr id="hour-{{ hour }}-15">
-            <hr id="hour-{{ hour }}-30">
-            <hr id="hour-{{ hour }}-45">
+            {% for minute in minutes %}
+                {% if minute != 0 %}
+                    <hr id="hour-{{ hour }}-{{ minute }}">
+                {% endif %}
+            {% endfor %}
         {% endfor %}
     </div>
-    {% for theater_short_name, theater_events in events.items %}
+    {% for theater, theater_events in events.items %}
     <div class="event-column">
-        <h2><a href="/theaters/{{ theater_short_name }}">{{ theater_short_name }}</a></h2>
+        <h2><a href="/theaters/{{ theater.1 }}">{{ theater.1 }}</a></h2>
         {% for event in theater_events %}
         <div 
             class="event color-{{ event.movie.color_code }}"

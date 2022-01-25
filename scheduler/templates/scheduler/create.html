@@ -19,7 +19,8 @@
                     </div>
                     <div class="form-floating mb-3">
                         <select name="theater_id" id="theater_id" class="form-select" aria-label="Select a theater">
-                            <option value="{{ random_theater }}" selected>Random</option>
+                            <option value="balanced" selected>Balance</option>
+                            <option value="{{ random_theater }}">Random</option>
                             {% for theater in theaters %}
                             <option value="{{ theater.id }}">{{ theater }}</option>
                             {% endfor %}
