@@ -71,7 +71,9 @@
     for (let i = 0; i < events.length; i++) {
         let timeTick = `hour-${events[i].dataset.hour}`
         if (events[i].dataset.minute != 0) {
-            timeTick += `-${events[i].dataset.minute}`
+            let minute = events[i].dataset.minute
+            minute = Math.round(minute / 15) * 15 // round to nearest quarter hour
+            timeTick += `-${minute}`
         }
 
         const timeTickBounds = document.getElementById(timeTick).getBoundingClientRect()
