@@ -41,7 +41,7 @@ h3 {
 .day-schedule {
     display: flex;
     flex-wrap: nowrap;
-    overflow: scroll;
+    overflow-x: scroll;
 }
 
 .time-column {
@@ -92,7 +92,9 @@ h3 {
 
 .event-column a {
     color: inherit;
-    text-decoration: dashed;
+    display: inline-block;
+    position: sticky;
+    left: 4.75rem;
 }
 
 .event {
